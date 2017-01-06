@@ -16,7 +16,7 @@ class SSO::SignerTest < Minitest::Test
   end
 
   def signer
-    SSO::Signer.new
+    SSO::Signer.new ('1234567890ABCDEF' * 4)
   end
 
 end

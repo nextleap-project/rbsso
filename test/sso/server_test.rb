@@ -11,7 +11,7 @@ class SSO::ServerTest < Minitest::Test
     SSO::Server.new(secret)
   end
 
-  def secret; 'VySE32_0Vf1Bf7yzoEJ0MxG_0VmCiCQM'; end
+  def secret; '1234567890ABCDEF' * 4; end
   def user; 'user'; end
   def service; 'service' ; end
   def domain; 'domain' ; end

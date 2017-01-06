@@ -7,7 +7,11 @@ module SSO
   class Signer
 
     def initialize(seed = nil)
-      @key = RbNaCl::SigningKey.generate
+      if !seed || seed !~ /[0-9a-f]{64}/i
+        raise ArgumentError, "seed MUST be 32 bytes, hex encoded string"
+      end
+      seed_binary = [seed].pack('H*')
+      @key = RbNaCl::SigningKey.new seed_binary
     end
 
     def verify_key
