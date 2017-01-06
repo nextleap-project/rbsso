@@ -3,4 +3,3 @@ gemspec
 gem "minitest-autotest"
 gem 'autotest-suffix'
 gem 'byebug'
-gem 'rbnacl-libsodium'
