@@ -4,7 +4,9 @@ require 'sso/client'
 class SSO::ClientTest < Minitest::Test
 
   def test_open_ticket
-    assert_equal 'ale@sso.net', client.open(ticket_string)
+    info = client.open(ticket_string)
+    assert_equal 'ale@sso.net', info[:email]
+    assert_equal 'ale', info[:name]
   end
 
   def client

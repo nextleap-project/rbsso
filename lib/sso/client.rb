@@ -11,7 +11,7 @@ module SSO
     def open(ticket_string)
       content = verifier.open ticket_string
       ticket = SSO::Ticket.parse content
-      return ticket.user + '@' + ticket.domain
+      { name: ticket.user, email: ticket.user + '@' + ticket.domain }
     end
 
     protected
