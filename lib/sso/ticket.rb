@@ -5,7 +5,7 @@ module SSO
     attr_reader :content, :signature
 
     def self.sign(content, key)
-      new content, key.sign(content), key.verify_key
+      new content.to_s, key.sign(content.to_s), key.verify_key
     end
 
     def self.open(encoded, verify_key)

@@ -21,6 +21,10 @@ module SSO
       content.join '|'
     end
 
+    def to_info
+      { name: user, email: user + '@' + domain }
+    end
+
     def content
       [VERSION, user, service, domain, expires.to_s, groups.join(',')]
     end

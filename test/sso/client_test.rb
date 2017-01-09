@@ -10,11 +10,11 @@ class SSO::ClientTest < Minitest::Test
   end
 
   def client
-    SSO::Client.new(verifier_key)
+    SSO::Client.new(verify_key)
   end
 
-  def verifier_key
-    Base64.encode64 "\xc0\xda\xdb\xb4\x83v[\x05]O\x9f\xf5UM\x92\xb3\xedzC?\x15\xf4\xd8\xeb\xab\xbb\xd0rQ\x0b\xfe#"
+  def verify_key
+    'c0dadbb483765b055d4f9ff5554d92b3ed7a433f15f4d8ebabbbd072510bfe23'
   end
 
   def ticket_string

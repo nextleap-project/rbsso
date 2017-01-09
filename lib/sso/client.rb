@@ -1,20 +1,25 @@
-require 'sso/verifier'
+require 'rbnacl'
+require 'sso/ticket'
 require 'sso/content'
 
 module SSO
   class Client
 
     def initialize(key)
-      @verifier = SSO::Verifier.new key
+      if !key || key !~ /[0-9a-f]{64}/i
+        raise ArgumentError, "key MUST be 32 bytes, hex encoded string, was: #{key}"
+      end
+      key = RbNaCl::VerifyKey.new [key].pack('H*')
+      @verify_key = key
     end
 
     def open(ticket_string)
-      content_string = verifier.open ticket_string
-      content = SSO::Content.parse content_string
-      { name: content.user, email: content.user + '@' + content.domain }
+      ticket = SSO::Ticket.open ticket_string, verify_key
+      content = SSO::Content.parse ticket.content
+      content.to_info
     end
 
     protected
-    attr_reader :verifier
+    attr_reader :verify_key
   end
 end

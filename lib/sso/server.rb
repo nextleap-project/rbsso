@@ -1,26 +1,29 @@
-require 'sso/signer'
 require 'sso/content'
-require 'base64'
+require 'sso/ticket'
 
 module SSO
   class Server
 
     def initialize(secret)
-      @signer = SSO::Signer.new(secret)
+      if !secret || secret !~ /[0-9a-f]{64}/i
+        raise ArgumentError, "seed MUST be 32 bytes, hex encoded string"
+      end
+      seed_binary = [secret].pack('H*')
+      @key = RbNaCl::SigningKey.new seed_binary
     end
 
     def ticket(user, service, domain)
       content = SSO::Content.new user: user, service: service, domain: domain
-      signatur = signer.sign content
-      return Base64.urlsafe_encode64(signatur + content.to_s)
+      ticket = SSO::Ticket.sign content, key
+      return ticket.to_base64
     end
 
-    def verifier_key
-      signer.verify_key
+    def verify_key
+      key.verify_key.to_s.unpack('H*').first
     end
 
     protected
 
-    attr_reader :signer
+    attr_reader :key
   end
 end

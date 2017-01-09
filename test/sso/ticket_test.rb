@@ -5,12 +5,12 @@ require 'sso/ticket'
 class SSO::TicketTest < Minitest::Test
 
   def test_sign_constructor
-    ticket = SSO::Ticket.sign(content, signing_key)
+    ticket = SSO::Ticket.sign content, signing_key
     assert_equal encoded_ticket, ticket.to_base64
   end
 
   def test_open_constructor
-    ticket = SSO::Ticket.open encoded_ticket, signing_key.verify_key
+    ticket = SSO::Ticket.open encoded_ticket, verify_key
     assert_equal content, ticket.content
   end
 
@@ -21,6 +21,10 @@ class SSO::TicketTest < Minitest::Test
   def signing_key
     seed_binary = [seed].pack('H*')
     RbNaCl::SigningKey.new seed_binary
+  end
+
+  def verify_key
+    RbNaCl::VerifyKey.new signing_key.verify_key
   end
 
   def seed

@@ -10,7 +10,7 @@ class IntegrationTest < Minitest::Test
     ticket = server.ticket("user", "service", "domain")
 
     # client
-    client = SSO::Client.new server.verifier_key
+    client = SSO::Client.new server.verify_key
     info = client.open(ticket)
     assert_equal 'user', info[:name]
     assert_equal 'user@domain', info[:email]
