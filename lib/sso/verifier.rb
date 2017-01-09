@@ -9,7 +9,7 @@ module SSO
     end
 
     def open(ticket)
-      decoded = Base64.decode64 ticket
+      decoded = Base64.urlsafe_decode64 ticket
       signature = decoded[0..63]
       content = decoded[64..-1]
       return content if key.verify(signature, content)

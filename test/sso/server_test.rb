@@ -1,10 +1,12 @@
 require 'test_helper'
 require 'sso/server'
+require 'base64'
 
 class SSO::ServerTest < Minitest::Test
 
   def test_ticket
-    assert_match /3|user|service|domain|14/, server.ticket(user, service, domain)
+    assert_match /3|user|service|domain|14/,
+      Base64.urlsafe_decode64(server.ticket(user, service, domain))
   end
 
   def server
