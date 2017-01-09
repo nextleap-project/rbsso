@@ -1,5 +1,5 @@
 module SSO
-  class Ticket
+  class Content
     VERSION = 3
 
     attr_reader :user, :service, :domain, :groups, :expires

@@ -1,5 +1,5 @@
 require 'sso/verifier'
-require 'sso/ticket'
+require 'sso/content'
 
 module SSO
   class Client
@@ -9,9 +9,9 @@ module SSO
     end
 
     def open(ticket_string)
-      content = verifier.open ticket_string
-      ticket = SSO::Ticket.parse content
-      { name: ticket.user, email: ticket.user + '@' + ticket.domain }
+      content_string = verifier.open ticket_string
+      content = SSO::Content.parse content_string
+      { name: content.user, email: content.user + '@' + content.domain }
     end
 
     protected
