@@ -10,9 +10,9 @@ We'll provide an omniauth strategy. It could also be used in bonafide server to 
   EODESC
   s.authors     = ['Azul']
   s.email       = 'azul@riseup.net'
-  s.files       = ['lib/sso.rb', 'lib/sso/ticket.rb']
+  s.files       = Dir['lib/**/*.rb']
   s.homepage    = 'https://0xacab.org/azul/rbsso'
-  s.add_dependency 'rbnacl'
-  s.add_development_dependency 'rake'
-  s.add_development_dependency 'minitest'
+  s.add_dependency 'rbnacl', '>= 3.4.0', '< 5.0'
+  s.add_development_dependency 'rake', '~> 12.0'
+  s.add_development_dependency 'minitest', '~> 5.0'
 end
