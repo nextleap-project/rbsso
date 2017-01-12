@@ -1,6 +1,6 @@
 require 'base64'
 
-module SSO
+module RbSSO
   class Ticket
     attr_reader :content, :signature
 

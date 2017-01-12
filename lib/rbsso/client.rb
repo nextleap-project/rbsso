@@ -1,8 +1,8 @@
 require 'rbnacl'
-require 'sso/ticket'
-require 'sso/content'
+require 'rbsso/ticket'
+require 'rbsso/content'
 
-module SSO
+module RbSSO
   class Client
 
     def initialize(key)
@@ -14,8 +14,8 @@ module SSO
     end
 
     def open(ticket_string)
-      ticket = SSO::Ticket.open ticket_string, verify_key
-      content = SSO::Content.parse ticket.content
+      ticket = RbSSO::Ticket.open ticket_string, verify_key
+      content = RbSSO::Content.parse ticket.content
       content.to_info
     end
 

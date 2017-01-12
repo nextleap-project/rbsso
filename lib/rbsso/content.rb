@@ -1,4 +1,4 @@
-module SSO
+module RbSSO
   class Content
     VERSION = 3
 

@@ -1,16 +1,16 @@
 require 'test_helper'
-require 'sso/server'
-require 'sso/client'
+require 'rbsso/server'
+require 'rbsso/client'
 
 class IntegrationTest < Minitest::Test
 
   def test_server_client_flow
     # server
-    server = SSO::Server.new seed
+    server = RbSSO::Server.new seed
     ticket = server.ticket("user", "service", "domain")
 
     # client
-    client = SSO::Client.new server.verify_key
+    client = RbSSO::Client.new server.verify_key
     info = client.open(ticket)
     assert_equal 'user', info[:name]
     assert_equal 'user@domain', info[:email]

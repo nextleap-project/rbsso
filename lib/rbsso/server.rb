@@ -1,7 +1,7 @@
-require 'sso/content'
-require 'sso/ticket'
+require 'rbsso/content'
+require 'rbsso/ticket'
 
-module SSO
+module RbSSO
   class Server
 
     def initialize(secret)
@@ -13,8 +13,8 @@ module SSO
     end
 
     def ticket(user, service, domain)
-      content = SSO::Content.new user: user, service: service, domain: domain
-      ticket = SSO::Ticket.sign content, key
+      content = RbSSO::Content.new user: user, service: service, domain: domain
+      ticket = RbSSO::Ticket.sign content, key
       return ticket.to_base64
     end
 

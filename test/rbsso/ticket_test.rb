@@ -1,16 +1,16 @@
 require 'test_helper'
 require 'rbnacl'
-require 'sso/ticket'
+require 'rbsso/ticket'
 
-class SSO::TicketTest < Minitest::Test
+class RbSSO::TicketTest < Minitest::Test
 
   def test_sign_constructor
-    ticket = SSO::Ticket.sign content, signing_key
+    ticket = RbSSO::Ticket.sign content, signing_key
     assert_equal encoded_ticket, ticket.to_base64
   end
 
   def test_open_constructor
-    ticket = SSO::Ticket.open encoded_ticket, verify_key
+    ticket = RbSSO::Ticket.open encoded_ticket, verify_key
     assert_equal content, ticket.content
   end
 

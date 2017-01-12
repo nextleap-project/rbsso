@@ -1,8 +1,8 @@
 require 'test_helper'
-require 'sso/server'
+require 'rbsso/server'
 require 'base64'
 
-class SSO::ServerTest < Minitest::Test
+class RbSSO::ServerTest < Minitest::Test
 
   def test_ticket
     assert_match /3|user|service|domain|14/,
@@ -10,7 +10,7 @@ class SSO::ServerTest < Minitest::Test
   end
 
   def server
-    SSO::Server.new(secret)
+    RbSSO::Server.new(secret)
   end
 
   def secret; '1234567890ABCDEF' * 4; end

@@ -1,7 +1,7 @@
 require 'test_helper'
-require 'sso/content'
+require 'rbsso/content'
 
-class SSO::ContentTest < Minitest::Test
+class RbSSO::ContentTest < Minitest::Test
 
   def test_basic_attributes
     assert_equal 'user', content.user
@@ -14,13 +14,13 @@ class SSO::ContentTest < Minitest::Test
   end
 
   def test_parse
-    parsed = SSO::Content.parse content.to_s
+    parsed = RbSSO::Content.parse content.to_s
     assert_equal content, parsed
   end
 
 
   def content
-    SSO::Content.new user: 'user',
+    RbSSO::Content.new user: 'user',
       service: 'service',
       domain: 'domain'
   end

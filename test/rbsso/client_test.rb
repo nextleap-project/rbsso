@@ -1,7 +1,7 @@
 require 'test_helper'
-require 'sso/client'
+require 'rbsso/client'
 
-class SSO::ClientTest < Minitest::Test
+class RbSSO::ClientTest < Minitest::Test
 
   def test_open_ticket
     info = client.open(ticket_string)
@@ -10,7 +10,7 @@ class SSO::ClientTest < Minitest::Test
   end
 
   def client
-    SSO::Client.new(verify_key)
+    RbSSO::Client.new(verify_key)
   end
 
   def verify_key
