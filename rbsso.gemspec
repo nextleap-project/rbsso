@@ -1,12 +1,12 @@
 Gem::Specification.new do |s|
   s.name        = 'rbsso'
-  s.version     = '0.1.0'
+  s.version     = '0.2.0'
   s.licenses    = ['MIT']
   s.summary     = "Ruby implementation for ai's libsso"
   s.description = <<-EODESC
 This is a ruby version based on libsodium of "ai sso"(https://git.autistici.org/ai/sso).
 
-We'll provide an omniauth strategy. It could also be used in bonafide server to sign sso tickets to be consumed by soledad server.
+We provide an omniauth strategy. It could also be used in bonafide server to sign sso tickets to be consumed by soledad server.
   EODESC
   s.authors     = ['Azul']
   s.email       = 'azul@riseup.net'
