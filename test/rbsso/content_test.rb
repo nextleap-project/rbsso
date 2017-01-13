@@ -18,6 +18,11 @@ class RbSSO::ContentTest < Minitest::Test
     assert_equal content, parsed
   end
 
+  def test_invalid_version
+    assert_raises RbSSO::Content::VersionMismatch do
+      RbSSO::Content.parse '4|other versions may contain other content'
+    end
+  end
 
   def content
     RbSSO::Content.new user: 'user',
