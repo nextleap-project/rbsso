@@ -31,10 +31,6 @@ class RbSSO::TicketTest < Minitest::Test
     '1234567890ABCDEF' * 4
   end
 
-  def signature
-    'A signature is a 64 byte binary string..........................'
-  end
-
   def encoded_ticket
     "loFbFifM6T_WJfe8D9Jyr80KXWxnBYNeJUoUA2PiSZi-Q_zSbFNu6gI-ujcDHTOq90GivY5nngTDz94C4zpgDjN8dXNlcnxzZXJ2aWNlfGRvbWFpbnwxNDgzOTY0NDkyfA=="
   end

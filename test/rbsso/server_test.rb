@@ -4,7 +4,13 @@ require 'base64'
 
 class RbSSO::ServerTest < Minitest::Test
 
-  def test_ticket
+  def test_check_seed
+    assert_raises ArgumentError do
+      RbSSO::Server.new('invalid seed')
+    end
+  end
+
+  def test_ticket_content
     assert_match /3|user|service|domain|14/,
       Base64.urlsafe_decode64(server.ticket(user, service, domain))
   end
