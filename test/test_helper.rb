@@ -7,3 +7,4 @@ if ENV['RCOV']
 end
 
 require 'minitest/autorun'
+require 'test_data'

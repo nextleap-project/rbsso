@@ -4,6 +4,17 @@ require 'rbsso/content'
 
 module RbSSO
   class Client
+    class TicketExpired < RuntimeError
+      def initialize(expiry)
+        super "Expired #{Time.now.to_i - expiry} seconds ago."
+      end
+    end
+
+    class WrongService < RuntimeError
+      def initialize(expected, was)
+        super "Ticket issued for #{was} is not valid on #{expected}."
+      end
+    end
 
     def initialize(service, key)
       if !key || key !~ /[0-9a-f]{64}/i
@@ -16,11 +27,10 @@ module RbSSO
 
     def open(ticket_string)
       ticket = RbSSO::Ticket.open ticket_string, verify_key
-      content = RbSSO::Content.parse ticket.content
-      if content.service != service
-        raise RuntimeError.new("Wrong service in ticket: #{content.service}")
-      end
-      content.to_info
+      auth = RbSSO::Content.parse ticket.content
+      raise TicketExpired.new(auth.expires) if auth.expired?
+      raise WrongService.new(service, auth.service) if auth.service != service
+      auth.to_info
     end
 
     protected

@@ -45,6 +45,10 @@ module RbSSO
         expires == other.expires
     end
 
+    def expired?
+      self.expires < Time.now.to_i
+    end
+
     def self.check_version(version)
       return if version.to_s == VERSION.to_s
       raise VersionMismatch.new(version)
