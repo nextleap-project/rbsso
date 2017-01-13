@@ -10,7 +10,7 @@ class RbSSO::ClientTest < Minitest::Test
   end
 
   def client
-    RbSSO::Client.new(verify_key)
+    RbSSO::Client.new('service/', verify_key)
   end
 
   def verify_key
