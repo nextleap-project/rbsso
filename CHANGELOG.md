@@ -1,3 +1,20 @@
+<a name="0.2.2"></a>
+### 0.2.2 (2017-01-13)
+
+
+#### Features
+
+* Check ticket expiry and raise if expired	 ([b0d1bf5](/../commit/b0d1bf5))
+
+
+<a name="0.2.2"></a>
+### 0.2.1 (2017-01-13)
+
+
+#### Bug Fixes
+
+* fix homepage url in gemspec	 ([0439785f](/../commit/0439785f))
+
 <a name="0.2.0"></a>
 ### 0.2.0 (2017-01-13)
 
