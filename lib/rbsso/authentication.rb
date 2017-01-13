@@ -1,5 +1,5 @@
 module RbSSO
-  class Content
+  class Authentication
     VERSION = 3
 
     class VersionMismatch < ArgumentError

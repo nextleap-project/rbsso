@@ -1,6 +1,6 @@
 require 'rbnacl'
 require 'rbsso/ticket'
-require 'rbsso/content'
+require 'rbsso/authentication'
 
 module RbSSO
   class Client
@@ -27,7 +27,7 @@ module RbSSO
 
     def open(ticket_string)
       ticket = RbSSO::Ticket.open ticket_string, verify_key
-      auth = RbSSO::Content.parse ticket.content
+      auth = RbSSO::Authentication.parse ticket.content
       raise TicketExpired.new(auth.expires) if auth.expired?
       raise WrongService.new(service, auth.service) if auth.service != service
       auth.to_info

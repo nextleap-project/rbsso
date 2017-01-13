@@ -1,6 +1,6 @@
 require 'rbnacl'
 require 'rbsso/ticket'
-require 'rbsso/content'
+require 'rbsso/authentication'
 
 module RbSSO
   class Server
@@ -14,8 +14,10 @@ module RbSSO
     end
 
     def ticket(user, service, domain)
-      content = RbSSO::Content.new user: user, service: service, domain: domain
-      ticket = RbSSO::Ticket.sign content, key
+      auth = RbSSO::Authentication.new user: user,
+        service: service,
+        domain: domain
+      ticket = RbSSO::Ticket.sign auth, key
       return ticket.to_base64
     end
 
