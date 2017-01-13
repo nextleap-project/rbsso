@@ -15,4 +15,8 @@ We'll provide an omniauth strategy. It could also be used in bonafide server to 
   s.add_dependency 'rbnacl', '>= 3.4.0', '< 5.0'
   s.add_development_dependency 'rake', '~> 12.0'
   s.add_development_dependency 'minitest', '~> 5.0'
+  s.add_development_dependency 'minitest-autotest', '~> 1.0'
+  s.add_development_dependency 'autotest-suffix', '~> 1.1'
+  s.add_development_dependency 'simplecov', '~> 0.11'
+  s.add_development_dependency 'conventional-changelog', '~> 1.2'
 end
