@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'rbsso'
-  s.version     = '0.2.0'
+  s.version     = '0.2.1'
   s.licenses    = ['MIT']
   s.summary     = "Ruby implementation for ai's libsso"
   s.description = <<-EODESC
@@ -11,7 +11,7 @@ We provide an omniauth strategy. It could also be used in bonafide server to sig
   s.authors     = ['Azul']
   s.email       = 'azul@riseup.net'
   s.files       = Dir['lib/**/*.rb']
-  s.homepage    = 'https://0xacab.org/azul/rbsso'
+  s.homepage    = 'https://0xacab.org/riseup/rbsso'
   s.add_dependency 'rbnacl', '>= 3.4.0', '< 5.0'
   s.add_development_dependency 'rake', '~> 12.0'
   s.add_development_dependency 'minitest', '~> 5.0'
