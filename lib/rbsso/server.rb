@@ -1,5 +1,6 @@
-require 'rbsso/content'
+require 'rbnacl'
 require 'rbsso/ticket'
+require 'rbsso/content'
 
 module RbSSO
   class Server
