@@ -30,7 +30,7 @@ class RbSSO::AuthenticationTest < Minitest::Test
 
   def test_invalid_version
     assert_raises RbSSO::Authentication::VersionMismatch do
-      RbSSO::Authentication.parse '4|other versions may contain other auth'
+      RbSSO::Authentication.parse '2|other versions may contain other auth'
     end
   end
 

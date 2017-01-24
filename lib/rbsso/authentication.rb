@@ -1,6 +1,6 @@
 module RbSSO
   class Authentication
-    VERSION = 3
+    VERSION = 4
 
     class VersionMismatch < ArgumentError
       def initialize(version)

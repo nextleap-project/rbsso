@@ -29,7 +29,7 @@ module RbSSO
 
     def test_reject_expired_ticket
       assert_raises Client::TicketExpired do
-        client.open(static_ticket_string)
+        client.open(expired_ticket_string)
       end
     end
 
