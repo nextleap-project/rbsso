@@ -1,4 +1,14 @@
+<a name="0.3.0"></a>
+### 0.3.0 (2017-01-24)
+
+
+#### Features
+
+* Add nonce to authentication	 ([97bb193](/../../commit/97bb193))
+
 #### API Changes
+
+Ticket version now is 4 to indicate support for nonces.
 
 Server#ticket now takes an arguments hash instead of order arguments.
 
