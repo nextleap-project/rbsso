@@ -7,11 +7,14 @@ class IntegrationTest < Minitest::Test
   def test_server_client_flow
     # server
     server = RbSSO::Server.new seed
-    ticket = server.ticket("user", "service/", "domain")
+    ticket = server.ticket user: "user",
+      service: "service/",
+      domain: "domain",
+      nonce: "nonce"
 
     # client
     client = RbSSO::Client.new 'service/', server.verify_key
-    info = client.open(ticket)
+    info = client.open(ticket, nonce: "nonce")
     assert_equal 'user', info[:name]
     assert_equal 'user@domain', info[:email]
   end
