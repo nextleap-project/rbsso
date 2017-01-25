@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'rbsso'
-  s.version     = '0.2.2'
+  s.version     = '0.3.0'
   s.licenses    = ['MIT']
   s.summary     = "Ruby implementation for ai's libsso"
   s.description = <<-EODESC

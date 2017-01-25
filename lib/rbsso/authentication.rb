@@ -1,6 +1,6 @@
 module RbSSO
   class Authentication
-    VERSION = 3
+    VERSION = 4
 
     class VersionMismatch < ArgumentError
       def initialize(version)
@@ -8,20 +8,22 @@ module RbSSO
       end
     end
 
-    attr_reader :user, :service, :domain, :groups, :expires
+    attr_reader :user, :service, :domain, :groups, :nonce, :expires
 
-    def initialize(user:, service:, domain:, groups: [], ttl: 3600, expires: nil)
+    def initialize(user:, service:, domain:, groups: [], nonce: nil, ttl: 3600, expires: nil)
       @user, @service, @domain, @groups = user, service, domain, groups
+      @nonce = nonce
       @expires = expires || (Time.now + ttl).to_i
     end
 
     def self.parse(string)
-      version, user, service, domain, expires, groups = string.split '|'
+      version, user, service, domain, expires, nonce, groups = string.split '|'
       check_version(version)
       new user: user,
         service: service,
         domain: domain,
         expires: expires.to_i,
+        nonce: nonce,
         groups: (groups || '').split(',')
     end
 
@@ -34,7 +36,7 @@ module RbSSO
     end
 
     def content
-      [VERSION, user, service, domain, expires.to_s, groups.join(',')]
+      [VERSION, user, service, domain, expires.to_s, nonce, groups.join(',')]
     end
 
     def ==(other)
@@ -42,7 +44,8 @@ module RbSSO
         service == other.service &&
         domain == other.domain &&
         groups == other.groups &&
-        expires == other.expires
+        expires == other.expires &&
+        nonce == other.nonce
     end
 
     def expired?

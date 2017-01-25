@@ -12,7 +12,13 @@ class RbSSO::ServerTest < Minitest::Test
 
   def test_ticket_content
     assert_match /3|user|service|domain|14/,
-      Base64.urlsafe_decode64(server.ticket(user, service, domain))
+      Base64.urlsafe_decode64(ticket)
+  end
+
+  def ticket
+    server.ticket user: user,
+      service: service,
+      domain: domain
   end
 
   def server

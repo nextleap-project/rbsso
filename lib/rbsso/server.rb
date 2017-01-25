@@ -13,10 +13,11 @@ module RbSSO
       @key = RbNaCl::SigningKey.new seed_binary
     end
 
-    def ticket(user, service, domain)
+    def ticket(user:, service:, domain:, nonce: nil)
       auth = RbSSO::Authentication.new user: user,
         service: service,
-        domain: domain
+        domain: domain,
+        nonce: nonce
       ticket = RbSSO::Ticket.sign auth, key
       return ticket.to_base64
     end

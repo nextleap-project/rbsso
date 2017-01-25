@@ -1,3 +1,25 @@
+<a name="0.3.0"></a>
+### 0.3.0 (2017-01-24)
+
+
+#### Features
+
+* Add nonce to authentication	 ([97bb193](/../../commit/97bb193))
+
+#### API Changes
+
+Ticket version now is 4 to indicate support for nonces.
+
+Server#ticket now takes an arguments hash instead of order arguments.
+
+Replace:
+  server.ticket user, service, domain
+With:
+  server.ticket user: user, service: service, domain: domain
+
+This allows us to introduce nounce as an option without introducing a
+fourth argument.
+
 <a name="0.2.2"></a>
 ### 0.2.2 (2017-01-13)
 
