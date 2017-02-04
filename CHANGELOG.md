@@ -1,3 +1,12 @@
+<a name="0.3.1"></a>
+### 0.3.1 (2017-02-04)
+
+
+#### Features
+
+* Allow specifying nonce and ttl for ticket	 ([19d0433](/../../commit/19d0433))
+
+
 <a name="0.3.0"></a>
 ### 0.3.0 (2017-01-24)
 
