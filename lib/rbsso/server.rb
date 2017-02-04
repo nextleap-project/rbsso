@@ -13,11 +13,16 @@ module RbSSO
       @key = RbNaCl::SigningKey.new seed_binary
     end
 
-    def ticket(user:, service:, domain:, nonce: nil)
-      auth = RbSSO::Authentication.new user: user,
-        service: service,
-        domain: domain,
-        nonce: nonce
+    # Create a ticket based on the authentication options.
+    #
+    # minimal example:
+    #   sso_server.ticket user: username, service: service, domain: domain
+    #
+    # Other options:
+    #   nonce: nonce identifying the client session. Send to server in params.
+    #   ttl:   time to live - number of seconds until the ticket expires.
+    def ticket(auth_options = {})
+      auth = RbSSO::Authentication.new auth_options
       ticket = RbSSO::Ticket.sign auth, key
       return ticket.to_base64
     end
